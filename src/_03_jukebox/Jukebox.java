@@ -5,6 +5,8 @@ package _03_jukebox;
  */
 
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -12,15 +14,43 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
+import javax.swing.JPanel;
+
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
 
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
+public class Jukebox implements Runnable, MouseListener {
+	JLabel chameleon;
+	JLabel fish;
+	JLabel island;
+	Song tangled;
+	Song lilo;
+	Song water;
+	void createUI(Jukebox J) {
+		JFrame frame = new JFrame();
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(3);
+		JPanel panel = new JPanel();
+		frame.add(panel);
+		chameleon = J.loadImage("chameleon.jpeg");
+		tangled = new Song("Tangled-When will my life begin.mp3");
+		chameleon.addMouseListener(this);
+		panel.add(chameleon);
+		fish = J.loadImage("orange fish.jpeg");
+		lilo = new Song("[HD] He Mele No Lilo - Lilo and Stitch.mp3");
+		fish.addMouseListener(this);
+		panel.add(fish);
+		island = J.loadImage("island.jpeg");
+		water = new Song("Auli'i Cravalho - How Far I'll Go.mp3");
+		island.addMouseListener(this);
+		panel.add(island);
+		frame.pack();
+	}
 
     public void run() {
 
@@ -40,10 +70,51 @@ public class Jukebox implements Runnable {
     
     
 	/* Use this method to add album covers to your Panel. */
-	private JLabel loadImage(String fileName) {
+	public JLabel loadImage(String fileName) {
 		URL imageURL = getClass().getResource(fileName);
 		Icon icon = new ImageIcon(imageURL);
 		return new JLabel(icon);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource()==chameleon) {
+			water.stop();
+			lilo.stop();
+			tangled.play();
+		}else if(e.getSource()==fish) {
+			water.stop();
+			tangled.stop();
+			lilo.play();
+		}else if(e.getSource()==island) {
+			lilo.stop();
+			tangled.stop();
+			water.play();
+		}
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

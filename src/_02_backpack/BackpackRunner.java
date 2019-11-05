@@ -12,5 +12,6 @@ public class BackpackRunner {
 		backpack.goToSchool();
 		orange.write("blah blah blah");
 		wood.measure();
+		history.read();
 	}
 }
