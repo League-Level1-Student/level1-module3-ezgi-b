@@ -19,7 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class MagicBox extends JPanel implements Runnable, MouseListener {
-
+	JFrame frame;
+	MediaPalace media;
 	/*
 	 * We are going to hide secrets within the magic box. 
 	 * When the user clicks on a secret place, stuff will happen.
@@ -48,12 +49,14 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	}
 
 	private void createUI() {
-		JFrame frame = new JFrame("The Magic Box contains many secrets...");
+		frame = new JFrame("The Magic Box contains many secrets...");
 		frame.add(this);
 		setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
+		frame.addMouseListener(this);
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		media = new MediaPalace();
 	}
 
 	private void loadBackgroundImage() throws Exception {
@@ -73,7 +76,22 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		System.out.println(e.getX());
+		System.out.println(e.getY());
+		if(462<e.getX()&&509>e.getX()&&e.getY()>622&&e.getY()<645) {
+			JFrame secondFrame = new JFrame("INVISIBLE BRIDGE");
+			secondFrame.setVisible(true);
+			secondFrame.setDefaultCloseOperation(3);
+			secondFrame.add(media.loadImageFromWithinProject("InvisibleBridge.jpg"));
+			secondFrame.pack();
+		}else if(e.getX()>257&&e.getX()<283&&e.getY()>711&&e.getY()<841){
+			media.playMusicOnComputer("src/_04_magic_box/magic.wav");
+			JFrame otherFrame = new JFrame("Orange Magic Tree");
+			otherFrame.setVisible(true);
+			otherFrame.setDefaultCloseOperation(3);
+			otherFrame.add(media.loadImageFromWithinProject("orangeTree.jpeg"));
+			otherFrame.pack();
+		}
 	}
 
 	@Override
