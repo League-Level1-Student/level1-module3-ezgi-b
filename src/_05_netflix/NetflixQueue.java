@@ -13,9 +13,9 @@ public class NetflixQueue {
 	
 	ArrayList<Movie> movies = new ArrayList<Movie>();
 	
-	public Movie getBestMovie(){
+	public Movie getMovieWithRatingNumber(int listSpot){
 		this.sortMoviesByRating();
-		return movies.get(0);
+		return movies.get(listSpot);
 	}
 
 	public void addMovie(Movie movie) {

@@ -13,15 +13,27 @@ public class CowTimer {
 	/* 1. Make a constructor for the CowTimer class that initializes the minutes variable */
 	
 	/* 4. Complete the main method of the CowTimerRunner class */
+	CowTimer(int seconds){
+		this.seconds=seconds;
+	}
+	private int seconds;
 
-	private int minutes;
-
-	public void setTime(int minutes) {
-		this.minutes = minutes;
-		System.out.println("Cow time set to " + minutes + " minutes.");
+	public void setTime(int seconds) {
+		this.seconds = seconds;
+		System.out.println("Cow time set to " + seconds + " seconds.");
+	}
+	public int getSeconds() {
+		return seconds;
 	}
 
 	public void start() throws InterruptedException {
+		for(int i = seconds; i>0; i--) {
+			setTime(i);
+			Thread.sleep(1000);
+		}
+		if(seconds==1) {
+			timeEnd();
+		}
 		/*
 		 * 2. Count down the minutes, print the current minute then sleep for the number of minutes
 		 * using Thread.sleep(int milliseconds). 
@@ -33,6 +45,10 @@ public class CowTimer {
 		 * from freesound.org, then drag it intothe default package.
 		 */
 
+	}
+	public void timeEnd() {
+		System.out.println("TIMER END");
+		playSound("moo.wav");
 	}
 
 	private void playSound(String fileName) {

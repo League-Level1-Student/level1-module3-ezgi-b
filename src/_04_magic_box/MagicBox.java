@@ -81,16 +81,23 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		if(462<e.getX()&&509>e.getX()&&e.getY()>622&&e.getY()<645) {
 			JFrame secondFrame = new JFrame("INVISIBLE BRIDGE");
 			secondFrame.setVisible(true);
-			secondFrame.setDefaultCloseOperation(3);
+			secondFrame.setDefaultCloseOperation(2);
 			secondFrame.add(media.loadImageFromWithinProject("InvisibleBridge.jpg"));
 			secondFrame.pack();
 		}else if(e.getX()>257&&e.getX()<283&&e.getY()>711&&e.getY()<841){
 			media.playMusicOnComputer("src/_04_magic_box/magic.wav");
 			JFrame otherFrame = new JFrame("Orange Magic Tree");
 			otherFrame.setVisible(true);
-			otherFrame.setDefaultCloseOperation(3);
+			otherFrame.setDefaultCloseOperation(2);;
 			otherFrame.add(media.loadImageFromWithinProject("orangeTree.jpeg"));
 			otherFrame.pack();
+		}else if(e.getX()>264&&e.getX()<298&&e.getY()>364&&e.getY()<396) {
+			media.playMusicOnComputer("src/_04_magic_box/waterfallSound.wav");
+			JFrame otherOtherFrame = new JFrame("Waterfall!!!!!");
+			otherOtherFrame.setVisible(true);
+			otherOtherFrame.setDefaultCloseOperation(2);;
+			otherOtherFrame.add(media.loadImageFromWithinProject("waterfall.jpg"));
+			otherOtherFrame.pack();
 		}
 	}
 
